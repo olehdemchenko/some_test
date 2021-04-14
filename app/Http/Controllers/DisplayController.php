@@ -7,14 +7,11 @@ use Illuminate\Http\Request;
 
 class DisplayController extends Controller
 {
-    /**
-     * Display a listing of the resource.
-     *
-     * @return \Illuminate\Http\Response
-     */
     public function index()
     {
-        //
+        $displays = Display::all()->toJson();
+
+        return view('display.index', compact('displays'));
     }
 
     /**
@@ -24,7 +21,7 @@ class DisplayController extends Controller
      */
     public function create()
     {
-        //
+        return view('display.create');
     }
 
     /**
@@ -46,30 +43,7 @@ class DisplayController extends Controller
      */
     public function show(Display $display)
     {
-        //
-    }
-
-    /**
-     * Show the form for editing the specified resource.
-     *
-     * @param  \App\Models\Display  $display
-     * @return \Illuminate\Http\Response
-     */
-    public function edit(Display $display)
-    {
-        //
-    }
-
-    /**
-     * Update the specified resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Display  $display
-     * @return \Illuminate\Http\Response
-     */
-    public function update(Request $request, Display $display)
-    {
-        //
+        return view('welcome');
     }
 
     /**
@@ -80,6 +54,6 @@ class DisplayController extends Controller
      */
     public function destroy(Display $display)
     {
-        //
+        $display->delete();
     }
 }
