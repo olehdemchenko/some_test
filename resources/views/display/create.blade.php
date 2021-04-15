@@ -3,7 +3,7 @@
 @section('title', 'Displays')
 
 @section('content')
-    <form method="post" action="{{ url('/displays') }}">
+    <form method="post" action="{{ url('/displays') }}" enctype="multipart/form-data">
         @csrf
         <div class="form-group">
             <label for="serial-number" class="form-label">S/N</label>

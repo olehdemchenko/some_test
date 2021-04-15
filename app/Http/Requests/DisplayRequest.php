@@ -26,8 +26,17 @@ class DisplayRequest extends FormRequest
                 'max:21',
                 new AvailableDisplayType()
             ],
-            'serial_number' => 'required|unique:displays,serial_number|string|max:20',
-            'attachment' => 'required|image'
+            'serial_number' => [
+                'required',
+                'unique:displays,serial_number',
+                'string',
+                'max:20'
+            ],
+            'attachment' => [
+                'required',
+                'image',
+                'mimes:jpeg,png,jpg'
+            ]
         ];
     }
 }

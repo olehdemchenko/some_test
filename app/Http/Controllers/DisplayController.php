@@ -34,12 +34,9 @@ class DisplayController extends Controller
      */
     public function store(DisplayRequest $request)
     {
-        dd($request);
-        $display = Display::create([
-            $request
-        ]);
+        $display = Display::create($request->all());
 
-        return redirect( route('welcome'));
+        return redirect()->route('displays.index');
     }
 
     /**

@@ -4,6 +4,8 @@ namespace App\Models;
 
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Http\File;
+use Illuminate\Support\Facades\Storage;
 
 class Display extends Model
 {
@@ -28,5 +30,11 @@ class Display extends Model
     public function reseller(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Reseller::class);
+    }
+
+    public function setAttachmentAttribute($file)
+    {
+        $path = Storage::disk('public')->putFile('attachments', $file);
+        $this->attributes['attachment'] = Storage::url($path);
     }
 }
