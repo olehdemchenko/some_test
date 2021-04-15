@@ -2,6 +2,7 @@
 
 namespace App\Http\Requests;
 
+use App\Rules\AvailableDisplayType;
 use Illuminate\Foundation\Http\FormRequest;
 
 class DisplayRequest extends FormRequest
@@ -14,10 +15,19 @@ class DisplayRequest extends FormRequest
     public function rules()
     {
         return [
-            'reseller_id' => 'required|numeric|exists:resellers,id',
-            'type' => 'required|string|max:21',
+            'reseller_id' => [
+                'required',
+                'numeric',
+                'exists:resellers,id'
+            ],
+            'type' => [
+                'required',
+                'string',
+                'max:21',
+                new AvailableDisplayType()
+            ],
             'serial_number' => 'required|unique:displays,serial_number|string|max:20',
-            'attachment' => 'image'
+            'attachment' => 'required|image'
         ];
     }
 }

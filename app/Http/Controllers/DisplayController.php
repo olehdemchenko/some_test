@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Http\Requests\DisplayRequest;
 use App\Models\Display;
+use App\Models\Reseller;
 use Illuminate\Http\Request;
 
 class DisplayController extends Controller
@@ -17,25 +18,28 @@ class DisplayController extends Controller
 
     /**
      * Show the form for creating a new resource.
-     *
-     * @return \Illuminate\Http\Response
      */
     public function create()
     {
-        return view('display.create');
+        $types = (new Display)->types;
+        $resellers = Reseller::all();
+
+        return view('display.create', compact('types', 'resellers'));
     }
 
     /**
      * Store a newly created resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
      */
     public function store(DisplayRequest $request)
     {
-        Display::create([
+        dd($request);
+        $display = Display::create([
             $request
         ]);
+
+        return redirect( route('welcome'));
     }
 
     /**
@@ -44,7 +48,7 @@ class DisplayController extends Controller
      * @param  \App\Models\Display  $display
      * @return \Illuminate\Http\JsonResponse
      */
-    public function show(Display $display)
+    public function show(Request $display)
     {
         return response()->json($display);
     }
