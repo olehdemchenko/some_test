@@ -18,5 +18,4 @@ Route::get('/', function () {
     return view('welcome');
 });
 
-Route::post('displays', [DisplayController::class, 'store'])->name('displaystore');
-//Route::resource('displays', DisplayController::class);
+Route::resource('displays', DisplayController::class);

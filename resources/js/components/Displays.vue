@@ -25,7 +25,6 @@
 </template>
 
 <script>
-    import './../mixins/GlobalDisplay'
     export default {
         props: [
             'displays'
@@ -46,7 +45,9 @@
                 })
             },
             showDisplay (item) {
-                console.log($display)
+                this.$actions.setSelectedDisplay(item)
+                this.$actions.setDisplayModal(true)
+                console.log(this.$store.selectedDisplay)
             }
         }
     }

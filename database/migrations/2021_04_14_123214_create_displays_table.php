@@ -17,8 +17,8 @@ class CreateDisplaysTable extends Migration
             $table->id();
             $table->unsignedBigInteger('reseller_id');
             $table->string('type', 20);
-            $table->string('serial_number');
-            $table->string('attachment');
+            $table->string('serial_number', 32);
+            $table->string('attachment', 120);
 
             $table->timestamps();
 

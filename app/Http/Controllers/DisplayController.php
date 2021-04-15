@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Requests\DisplayRequest;
 use App\Models\Display;
 use Illuminate\Http\Request;
 
@@ -30,20 +31,22 @@ class DisplayController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function store(DisplayRequest $request)
     {
-        //
+        Display::create([
+            $request
+        ]);
     }
 
     /**
      * Display the specified resource.
      *
      * @param  \App\Models\Display  $display
-     * @return \Illuminate\Http\Response
+     * @return \Illuminate\Http\JsonResponse
      */
     public function show(Display $display)
     {
-        return view('welcome');
+        return response()->json($display);
     }
 
     /**

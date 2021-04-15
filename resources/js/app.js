@@ -22,8 +22,23 @@ window.Vue = require('vue').default;
 Vue.component('displays', require('./components/Displays.vue').default);
 Vue.component('modal', require('./components/Modal.vue').default);
 
-Vue.prototype.$selectedDisplay = null;
-import 'mixins/GlobalDisplay'
+
+// TODO: in bigger project need replace with Vuex
+const store = Vue.observable({
+    selectedDisplay: null,
+    displayModal: false
+})
+const actions = {
+    setSelectedDisplay(value) {
+        store.selectedDisplay = value
+    },
+    setDisplayModal(value) {
+        store.displayModal = value
+    }
+}
+
+Vue.prototype.$store = store
+Vue.prototype.$actions = actions
 
 /**
  * Next, we will create a fresh Vue application instance and attach it to
