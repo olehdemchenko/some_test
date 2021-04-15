@@ -12,7 +12,7 @@
                     <p><b>ID:</b> {{ $store.selectedDisplay.id }}</p>
                     <p><b>Type:</b> {{ $store.selectedDisplay.type }}</p>
                     <p><b>S/N:</b> {{ $store.selectedDisplay.serial_number }}</p>
-                    <p><b>Attachment:</b> <img :src="$store.selectedDisplay.attachment" width="200px"></p>
+                    <p><b>Attachment:</b> <img :src="$store.selectedDisplay.file_path" width="200px"></p>
                 </div>
             </div>
         </div>

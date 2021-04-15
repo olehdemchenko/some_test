@@ -3,9 +3,9 @@
         <thead>
         <tr>
             <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
+            <th scope="col">Type</th>
+            <th scope="col">Reseller</th>
+            <th scope="col">S/N</th>
             <th scope="col">Actions</th>
         </tr>
         </thead>
@@ -13,8 +13,8 @@
             <tr v-for="item in items">
                 <th scope="row">{{ item.id }}</th>
                 <td>{{ item.type }}</td>
-                <td>Otto</td>
-                <td>@mdo</td>
+                <td>{{ item.reseller.name }}</td>
+                <td>{{ item.serial_number }}</td>
                 <td>
                     <a href="#" class="btn btn-danger" @click="deleteDisplay(item)">Delete</a>
                     <a href="#" class="btn btn-primary" @click="showDisplay(item)">Show</a>
@@ -34,9 +34,6 @@
                 items: this.displays
             }
         },
-        mounted() {
-            console.log('Component mounted.')
-        },
         methods: {
             deleteDisplay (item) {
                 axios.delete(process.env.MIX_APP_URL + `/displays/${item.id}`)
@@ -47,7 +44,6 @@
             showDisplay (item) {
                 this.$actions.setSelectedDisplay(item)
                 this.$actions.setDisplayModal(true)
-                console.log(this.$store.selectedDisplay)
             }
         }
     }

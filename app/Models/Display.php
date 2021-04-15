@@ -16,7 +16,7 @@ class Display extends Model
         'reseller_id',
         'type',
         'serial_number',
-        'attachment'
+        'file_path'
     ];
 
     public $types = [
@@ -30,11 +30,5 @@ class Display extends Model
     public function reseller(): \Illuminate\Database\Eloquent\Relations\BelongsTo
     {
         return $this->belongsTo(Reseller::class);
-    }
-
-    public function setAttachmentAttribute($file)
-    {
-        $path = Storage::disk('public')->putFile('attachments', $file);
-        $this->attributes['attachment'] = Storage::url($path);
     }
 }

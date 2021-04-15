@@ -23,15 +23,12 @@ class DisplayFactory extends Factory
      */
     public function definition()
     {
-        $types = [
-            Display::ACCESSORY_TYPE,
-            Display::LASER_PHOTO_TYPE
-        ];
+        $types = (new Display)->types;
 
         return [
-            'type' =>Arr::random($types, 1)[0],
+            'type' => Arr::random($types, 1)[0],
             'serial_number' => Str::random(32),
-            'attachment' => $this->faker->imageUrl()
+            'file_path' => $this->faker->imageUrl()
         ];
     }
 }

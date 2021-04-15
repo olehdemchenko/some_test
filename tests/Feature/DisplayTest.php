@@ -16,7 +16,7 @@ class DisplayTest extends TestCase
      *
      * @return void
      */
-    public function test_example()
+    public function test_store_and_delete()
     {
         $stub = __DIR__.'/stubs/stub.jpg';
         $name = Str::random(8).'.jpg';
@@ -35,17 +35,17 @@ class DisplayTest extends TestCase
 
         $response = $this->postJson('/displays', $data);
 
-        $response->assertStatus(200);
-        $content = json_decode($response->getContent());
-        $this->assertObjectHasAttribute('name', $content);
+        $response->assertStatus(302);
 
-        $uploaded = 'uploads'.DIRECTORY_SEPARATOR.$content->name;
-        $this->assertFileExists(public_path($uploaded));
+        unset($data['attachment']);
+        $displays = Display::where($data)->get();
 
-        @unlink($uploaded);
+        $this->assertCount(1, $displays);
 
-
-        $response = $this->delete('/displays/1');
+        $id = $displays->first()->id;
+        $response = $this->delete("/displays/$id");
+        $display = Display::find($id);
+        $this->assertEmpty($display);
 
         $response->assertStatus(200);
 
