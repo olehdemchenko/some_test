@@ -1,4 +1,5 @@
 To launch project:
+
 - `cd laradock`,
 - `cp env-example .env`
 - `docker-compose up -d nginx php-fpm mysql` `docker-compose build workspace` & `docker-compose build php-fpm mysql`
